@@ -1,0 +1,1 @@
+console.log("EduNova Authentication System Loaded 🚀");

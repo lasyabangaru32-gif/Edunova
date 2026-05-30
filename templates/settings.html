@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Settings - EduNova
+{% endblock %}
+
+
+{% block content %}
+
+<h1>⚙️ Settings</h1>
+
+
+<!-- =====================================
+     ACCOUNT SETTINGS
+===================================== -->
+
+<form>
+
+    <h2 style="margin-bottom:20px;">
+        Account Settings
+    </h2>
+
+    <input type="text"
+           value="Admin"
+           placeholder="Username">
+
+    <br><br>
+
+    <input type="email"
+           value="{{ session['user'] }}"
+           placeholder="Email">
+
+    <br><br>
+
+    <input type="password"
+           placeholder="New Password">
+
+    <br><br>
+
+    <button type="submit">
+        Save Changes
+    </button>
+
+</form>
+
+
+<!-- =====================================
+     SYSTEM INFO
+===================================== -->
+
+<div class="card">
+
+    <h2>💻 System Information</h2>
+
+    <br>
+
+    <p><strong>Project:</strong> EduNova</p>
+
+    <br>
+
+    <p><strong>Framework:</strong> Flask</p>
+
+    <br>
+
+    <p><strong>Database:</strong> MySQL</p>
+
+    <br>
+
+    <p><strong>Status:</strong> Active</p>
+
+</div>
+<footer>
+  <p>© 2026 EduNova | Built by Veyra 💻 | Version 1.0</p>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Students - EduNova
+{% endblock %}
+
+
+{% block content %}
+
+<h1>👨‍🎓 Students Management</h1>
+
+
+<!-- =====================================
+     SEARCH BAR
+===================================== -->
+
+<input type="text"
+       id="searchInput"
+       placeholder="🔍 Search Students..."
+       onkeyup="searchStudents()">
+
+<br><br>
+
+
+<!-- =====================================
+     ADD STUDENT FORM
+===================================== -->
+
+<form method="POST">
+
+    <input type="text"
+           name="name"
+           placeholder="Student Name"
+           required>
+
+    <br><br>
+
+    <input type="number"
+           name="age"
+           placeholder="Age"
+           required>
+
+    <br><br>
+
+    <input type="text"
+           name="course"
+           placeholder="Course"
+           required>
+
+    <br><br>
+
+    <button type="submit">
+        Add Student
+    </button>
+
+</form>
+
+
+<!-- =====================================
+     STUDENTS TABLE
+===================================== -->
+
+<table id="studentsTable">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Action</th>
+    </tr>
+
+    {% for s in students %}
+
+    <tr>
+
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td>
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+
+        <td>
+
+            <a href="/edit_student/{{ s[0] }}">
+                ✏️ Edit
+            </a>
+
+            |
+
+            <a href="/delete_student/{{ s[0] }}">
+                🗑️ Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+function searchStudents(){
+
+    let input = document.getElementById("searchInput");
+
+    let filter = input.value.toLowerCase();
+
+    let table = document.getElementById("studentsTable");
+
+    let tr = table.getElementsByTagName("tr");
+
+    for(let i = 1; i < tr.length; i++){
+
+        let rowText = tr[i].textContent.toLowerCase();
+
+        if(rowText.includes(filter)){
+
+            tr[i].style.display = "";
+
+        }else{
+
+            tr[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+</script>
+<footer>
+  <p>© 2026 EduNova | Built by Veyra 💻 | Version 1.0</p>
+</footer>
+
+{% endblock %}

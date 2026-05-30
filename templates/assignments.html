@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assignments - EduNova
+{% endblock %}
+
+
+{% block content %}
+
+<h1>📝 Assignments Management</h1>
+
+
+<!-- =====================================
+     ADD ASSIGNMENT FORM
+===================================== -->
+
+<form method="POST">
+
+    <input type="text"
+           name="title"
+           placeholder="Assignment Title"
+           required>
+
+    <br><br>
+
+    <input type="date"
+           name="due_date"
+           required>
+
+    <br><br>
+
+    <input type="text"
+           name="status"
+           placeholder="Status"
+           required>
+
+    <br><br>
+
+    <button type="submit">
+        Add Assignment
+    </button>
+
+</form>
+
+
+<!-- =====================================
+     ASSIGNMENTS TABLE
+===================================== -->
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for a in assignments %}
+
+    <tr>
+
+        <td>{{ a[0] }}</td>
+        <td>{{ a[1] }}</td>
+        <td>{{ a[2] }}</td>
+        <td>{{ a[3] }}</td>
+
+        <td>
+
+            <a href="/edit_assignment/{{ a[0] }}">
+                ✏️ Edit
+            </a>
+
+            |
+
+            <a href="/delete_assignment/{{ a[0] }}">
+                🗑️ Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+<footer>
+  <p>© 2026 EduNova | Built by Veyra 💻 | Version 1.0</p>
+</footer>
+
+{% endblock %}
