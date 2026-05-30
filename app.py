@@ -1,16 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = "edunova_secret_key"
 
+import os
+
+load_dotenv()
+
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Lasya@2008",
-        database="edunova"
+        host=os.getenv("MYSQL_HOST"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        database=os.getenv("MYSQL_DATABASE")
     )
 
 APP_NAME = "EduNova"
